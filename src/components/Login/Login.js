@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers';
 import { useSnackbar } from 'notistack';
 
 import authenticationService from '../../common/services/authentication';
@@ -35,12 +36,12 @@ const Login = () => {
   const classes = useStyles();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, errors } = useForm({
     defaultValues: {
       email: '',
       password: ''
     },
-    validationSchema
+    resolver: yupResolver(validationSchema)
   });
   const [submitting, setSubmitting] = useState(false);
 
@@ -65,8 +66,8 @@ const Login = () => {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-          <Typography variant="h3">React App</Typography>
-          <Typography variant="subtitle1">Starter</Typography>
+          <Typography variant="h3">{process.env.REACT_APP_NAME}</Typography>
+          <Typography variant="subtitle1">System</Typography>
           <form
             className={classes.form}
             noValidate
@@ -83,6 +84,8 @@ const Login = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              error={errors.email ? true : false}
+              helperText={errors?.email?.message}
             />
             <Controller
               as={TextField}
@@ -95,6 +98,8 @@ const Login = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              error={errors.password ? true : false}
+              helperText={errors?.password?.message}
             />
             <Button
               type="submit"

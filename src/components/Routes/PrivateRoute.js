@@ -14,7 +14,7 @@ const PrivateRoute = (props) => {
   }
 
   const { user: currentUser } = sessionService.get();
-  const userRoles = currentUser.role;
+  const userRoles = currentUser.roles.map((role) => role.id);
 
   return roles &&
     !roles.filter((element) => userRoles.includes(element)).length ? (

@@ -20,7 +20,7 @@ const Routes = () => {
           exact
           layout={Main}
           path="/dashboard"
-          roles={[roles.admin]}
+          roles={[roles.user, roles.admin]}
         />
         <PublicRoute
           component={Login}

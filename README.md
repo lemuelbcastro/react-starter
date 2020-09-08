@@ -23,6 +23,7 @@ Create any of these `.env` files:
 Add these environment variables and replace their corresponding values:
 
 ```sh
+REACT_APP_NAME=React Starter
 REACT_APP_API_BASE=http://localhost:8000/api/v1
 REACT_APP_SESSION_KEY=react-starter-session
 ```
@@ -32,14 +33,20 @@ Expected response body structure from `login` request
 ```javascript
 {
     "user": {
-        ...,
-        "role": []
+        "name": "John Doe",
+        "email": "john.doe@email.com",
+        "roles": [
+            {
+                "id": 1,
+                "name": "Admin",
+            }
+        ]
     },
     "token": ""
 }
 ```
 
-* `user` object must have a `role` property which contains an array of roles. Roles must be mapped on `src\common\utils\roles.js`.
+* `user` object must have a `roles` property which contains an array of roles. Roles must be mapped on `src\common\utils\roles.js`.
 * `token` value will be automatically attached on the `Authorization` header of every HTTP requests.
 
 ## Available Scripts

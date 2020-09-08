@@ -150,7 +150,7 @@ const DataTable = (props) => {
     <Card {...rest} className={clsx(classes.root, className)}>
       {headerTitle && (
         <React.Fragment>
-          <CardHeader title="Travel Passeners" />
+          <CardHeader title={headerTitle} />
           <Divider />
         </React.Fragment>
       )}
@@ -244,7 +244,7 @@ const DataTable = (props) => {
           }
           count={tableData.length}
           rowsPerPage={pageSize}
-          page={pageIndex}
+          page={rows.length === pageSize ? 0 : pageIndex}
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />

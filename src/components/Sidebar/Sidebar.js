@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -8,9 +8,11 @@ import {
   List,
   ListItem,
   Button,
+  Typography,
   colors
 } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import { nanoid } from 'nanoid';
 
 import roles from '../../common/utils/roles';
 import sessionService from '../../common/services/session';
@@ -27,7 +29,13 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     padding: theme.spacing(2)
   },
+  header: {
+    marginTop: theme.spacing(1.5)
+  },
   divider: {
+    margin: theme.spacing(1, 0)
+  },
+  mainDivider: {
     margin: theme.spacing(2, 0)
   },
   nav: {
@@ -74,21 +82,32 @@ const Sidebar = (props) => {
   const { open, variant, onClose } = props;
   const classes = useStyles();
   const { user: currentUser } = sessionService.get();
-  const userRoles = currentUser.role;
+  const userRoles = currentUser.roles.map((role) => role.id);
 
   const bannerText = {
-    heading: 'React App',
-    subheading: 'Starter'
+    heading: process.env.REACT_APP_NAME,
+    subheading: 'System'
   };
 
-  const pages = [
-    {
-      title: 'Dashboard',
-      href: '/dashboard',
-      icon: <DashboardIcon />,
-      roles: [roles.admin]
-    }
-  ];
+  const pages = useMemo(
+    () => [
+      {
+        id: nanoid(),
+        title: 'Dashboard',
+        href: '/dashboard',
+        icon: <DashboardIcon />,
+        roles: [roles.user, roles.admin]
+      },
+      { id: nanoid(), divider: true, roles: [roles.admin] },
+      {
+        id: nanoid(),
+        header: true,
+        title: 'Maintenance',
+        roles: [roles.admin]
+      }
+    ],
+    []
+  );
 
   return (
     <Drawer
@@ -103,30 +122,42 @@ const Sidebar = (props) => {
           heading={bannerText.heading}
           subheading={bannerText.subheading}
         />
-        <Divider className={classes.divider} />
+        <Divider className={classes.mainDivider} />
         <List className={classes.nav}>
           {pages
             .filter(
               (page) =>
                 page.roles.filter((role) => userRoles.includes(role)).length
             )
-            .map((page) => (
-              <ListItem
-                className={classes.item}
-                disableGutters
-                key={page.title}
-              >
-                <Button
-                  activeClassName={classes.active}
-                  className={classes.button}
-                  component={CustomRouterLink}
-                  to={page.href}
-                >
-                  <div className={classes.icon}>{page.icon}</div>
-                  {page.title}
-                </Button>
-              </ListItem>
-            ))}
+            .map((page) => {
+              if (page.divider)
+                return <Divider className={classes.divider} key={page.id} />;
+
+              if (page.header)
+                return (
+                  <Typography
+                    gutterBottom
+                    className={classes.header}
+                    key={page.id}
+                  >
+                    {page.title}
+                  </Typography>
+                );
+
+              return (
+                <ListItem className={classes.item} disableGutters key={page.id}>
+                  <Button
+                    activeClassName={classes.active}
+                    className={classes.button}
+                    component={CustomRouterLink}
+                    to={page.href}
+                  >
+                    <div className={classes.icon}>{page.icon}</div>
+                    {page.title}
+                  </Button>
+                </ListItem>
+              );
+            })}
         </List>
       </div>
     </Drawer>
