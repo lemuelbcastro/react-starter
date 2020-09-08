@@ -40,8 +40,7 @@ const ModalConfirm = (props) => {
 };
 
 ModalConfirm.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-    .isRequired,
+  children: PropTypes.node.isRequired,
   title: PropTypes.string,
   open: PropTypes.bool.isRequired,
   handleCancel: PropTypes.func.isRequired,

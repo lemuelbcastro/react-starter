@@ -12,7 +12,7 @@ const DataTableButtons = (props) => {
     disableAdd,
     disableEdit,
     disableDelete,
-    addtionalButtons
+    addOnButtons
   } = props;
 
   return (
@@ -38,13 +38,13 @@ const DataTableButtons = (props) => {
       <Button
         size="small"
         variant="contained"
-        color="secondary"
+        color="primary"
         onClick={onClickDelete}
         disabled={disableDelete}
       >
         Delete
       </Button>
-      {addtionalButtons}
+      {addOnButtons}
     </ButtonGroup>
   );
 };
@@ -56,10 +56,7 @@ DataTableButtons.propTypes = {
   disableAdd: PropTypes.bool,
   disableEdit: PropTypes.bool,
   disableDelete: PropTypes.bool,
-  addtionalButtons: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.element),
-    PropTypes.element
-  ])
+  addOnButtons: PropTypes.node
 };
 
 export default DataTableButtons;

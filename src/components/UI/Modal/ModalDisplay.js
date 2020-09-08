@@ -38,8 +38,7 @@ const ModalDisplay = (props) => {
 };
 
 ModalDisplay.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-    .isRequired,
+  children: PropTypes.node.isRequired,
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func,
   dialogTitle: PropTypes.string,

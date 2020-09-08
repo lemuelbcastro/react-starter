@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingBottom: '5px',
+    paddingBottom: theme.spacing(0.5),
     '& > *': { margin: theme.spacing(0.5) }
   }
 }));
@@ -17,10 +17,7 @@ const ButtonGroup = (props) => {
 };
 
 ButtonGroup.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.element),
-    PropTypes.element
-  ]).isRequired
+  children: PropTypes.node.isRequired
 };
 
 export default ButtonGroup;

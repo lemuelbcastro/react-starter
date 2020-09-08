@@ -5,7 +5,7 @@ import sessionService from '../session';
 
 const authenticationService = {
   login: (data) =>
-    axios.post('/users/login', data).then((response) => {
+    axios.post('/auth/login', data).then((response) => {
       const { user, token } = response.data;
 
       sessionService.create({ user, token });
