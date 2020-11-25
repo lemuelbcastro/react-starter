@@ -1,6 +1,6 @@
-# React App Starter
+# React Starter
 
-A boilerplate for creating web applications using [React](https://reactjs.org/) and [Material UI](https://material-ui.com/).
+A boilerplate [React](https://reactjs.org/) project equiped with [Material UI](https://material-ui.com/). Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Installation
 
@@ -46,8 +46,8 @@ Expected response body structure from `login` request
 }
 ```
 
-* `user` object must have a `roles` property which contains an array of roles. Roles must be mapped on `src\common\utils\roles.js`.
-* `token` value will be automatically attached on the `Authorization` header of every HTTP requests.
+* The `user` object must have a `roles` property which contains an array of roles. Roles must be mapped on `src\common\utils\roles.js`.
+* The `token` property's value will be automatically attached to the `Authorization` header of every HTTP request.
 
 ## Available Scripts
 
@@ -72,15 +72,3 @@ Builds the app for production to the `build` folder.
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
 If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-## Other Libraries Used
-
-* [react-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom) - Application routing
-* [react-table](https://github.com/tannerlinsley/react-table) - Tables
-* [react-hook-form](https://github.com/react-hook-form/react-hook-form) - Form handling
-* [yup](https://github.com/jquense/yup) - Schema validation
-* [axios](https://github.com/axios/axios) - HTTP client
-* [material-ui-pickers](https://github.com/mui-org/material-ui-pickers) - Date & time pickers
-* [notistack](https://github.com/iamhosseindhv/notistack) - Customizable snackbars
-
-#### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
