@@ -36,15 +36,7 @@
     "extends": [
       "react-app",
       "plugin:prettier/recommended"
-    ],
-    "rules": {
-      "no-unused-vars": [
-        "error",
-        {
-          "ignoreRestSiblings": true
-        }
-      ]
-    }
+    ]
   },
   "prettier": {
     "tabWidth": 2,
