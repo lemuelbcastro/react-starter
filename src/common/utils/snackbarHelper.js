@@ -16,7 +16,7 @@ export const SnackbarHelperConfigurator = () => (
   <InnerSnackbarHelperConfigurator setUseSnackbarRef={setUseSnackbarRef} />
 );
 
-export default {
+const snackbarHelper = {
   success(message, options = {}) {
     this.toast(message, { ...options, variant: 'success' });
   },
@@ -33,3 +33,5 @@ export default {
     useSnackbarRef.enqueueSnackbar(message, options);
   }
 };
+
+export default snackbarHelper;
