@@ -55,10 +55,6 @@ Expected response body structure from `login` request
 
 Runs the app in the development mode.
 
-### `npm format`
-
-Format all the code based on the prettier and linting configuration.
-
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.
@@ -72,3 +68,11 @@ Builds the app for production to the `build` folder.
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
 If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+### `npm run lint`
+
+Identify issues on all `js` and `jsx` files in the `src` directory.
+
+### `npm run format`
+
+Format the code style of all relevant files in the `src` directory.
